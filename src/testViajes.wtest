@@ -1,0 +1,72 @@
+import Viajes.*
+
+describe "test sobre viajes" {
+
+	const playaFantastica = new ViajeDePlaya()
+	const excursionABs = new ExcursionACiudad()
+	const excursionARio = new ExcursionACiudadTropical()
+	const caminataAMonte = new SalidaDeTrekking()
+
+	fixture {
+		//inicializando valores en playaFantastica
+		playaFantastica.setIdiomas("ingles")
+		playaFantastica.setIdiomas("portugues")
+		//inicializando
+	}
+	//tests para la playaFantastica
+	test "idiomas en la playa" {
+		assert.equals(#{ "ingles", "portugues" }, playaFantastica.idiomas())
+	}
+
+	test "cuantos dias lleva el viaje a la playa" {
+		assert.equals(4, playaFantastica.cuantosDiasLleva())
+	}
+	test "saber si implica esfuerzo el viaje a la playa"{
+		assert.that(playaFantastica.implicaEsfuerzo())
+	}
+	//tests para excursionAbs con dos atracciones
+	
+	test "cuantos dias lleva el viaje a la ciudad"{
+		excursionABs.cantidadDeAtraccionesAVisitar(4)
+		assert.equals(2,excursionABs.cuantosDiasLleva())
+	}
+	test "saber si implica esfuerzo el viaje a la ciudad"{
+		excursionABs.cantidadDeAtraccionesAVisitar(4)
+		assert.notThat(excursionABs.implicaEsfuerzo())
+	}
+	test "saber si la excursio a Buenos Aires sirve para broncearse"{
+		assert.notThat(excursionABs.sirveParaBroncearse())
+	}
+	// tests para excursionARio con 4 atracciones
+	test "saber cuanto tiempo lleva el viaje a rio"{
+		excursionARio.cantidadDeAtraccionesAVisitar(4)
+		assert.equals(3,excursionARio.cuantosDiasLleva())
+	}
+	test "saber si implica esfuerzo el viaje a rio"{
+		excursionARio.cantidadDeAtraccionesAVisitar(4)
+		assert.notThat(excursionARio.implicaEsfuerzo())
+	}
+	test "saber si la excursion a Rio sirve para broncearse"{
+		excursionARio.cantidadDeAtraccionesAVisitar(4)
+		assert.that(excursionARio.sirveParaBroncearse())
+	}
+	
+	// tests salida de trekking con 100 km con 130 dias de sol por anio
+	test "cuantos dias lleva el viaje de trekking"{
+		caminataAMonte.kmDeSenderos(100)
+		caminataAMonte.diasDeSolPorAnio(130)
+		assert.equals(2,caminataAMonte.cuantosDiasLleva())
+	}
+	test "saber si la caminata a el monte implica esfuerzo"{
+		caminataAMonte.kmDeSenderos(100)
+		caminataAMonte.diasDeSolPorAnio(130)
+		assert.that(caminataAMonte.implicaEsfuerzo())
+	}
+	test "saber si la caminata a el monte broncea " {
+		caminataAMonte.kmDeSenderos(100)
+		caminataAMonte.diasDeSolPorAnio(130)
+		assert.notThat(caminataAMonte.sirveParaBroncearse())
+	}
+
+}
+

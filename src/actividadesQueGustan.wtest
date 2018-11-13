@@ -1,0 +1,27 @@
+import Viajes.*
+import clasesDeGimnasia.*
+import socios.*
+
+describe "actividades que le gustan a los socios" {
+	const playaFantastica = new ViajeDePlaya()
+	const playaLoca = new ViajeDePlaya()
+	const roque = new SocioRelajado()
+	
+	fixture{
+		playaFantastica.largoPlaya(1000)
+		playaFantastica.setIdiomas("ingles")
+		playaFantastica.setIdiomas("frances")
+		playaLoca.largoPlaya(2000)
+		roque.maximoDeActividades(2)
+		roque.realizarActividad(playaFantastica)
+		roque.setIdiomasQueHabla("ingles")
+		
+		
+	}
+	
+	test "le gusta al socio relajado" {
+
+		assert.that(roque.actividadesQueLoAtraen(playaFantastica))
+
+	}
+}

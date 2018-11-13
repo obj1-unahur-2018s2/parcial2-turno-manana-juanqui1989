@@ -1,0 +1,27 @@
+import Viajes.*
+import clasesDeGimnasia.*
+import socios.*
+describe "test para agregar actividades a socios" {
+	const playaFantastica = new ViajeDePlaya()
+	const playaLoca = new ViajeDePlaya()
+	const roque = new Socio()
+	
+	
+	fixture{
+		playaFantastica.largoPlaya(1000)
+		playaLoca.largoPlaya(2000)
+		roque.maximoDeActividades(2)
+		roque.realizarActividad(playaFantastica)
+		roque.realizarActividad(playaLoca)
+		
+	}
+	test "es roque adorador del sol?" {
+
+		assert.that(roque.esAdoradorDelSol())
+
+	}
+	test "devolver actividades que requirieron esfuerzo"{
+		assert.equals(#{playaLoca},roque.actividadesConEsfuerzo())
+	}
+	
+}

@@ -1,0 +1,31 @@
+import Viajes.*
+import clasesDeGimnasia.*
+import socios.*
+import talleresLiterarios.*
+describe "tests para libros" {
+	const tallerPoesia = new TallerLiterario()
+	const poemasNeruda = new Libro()
+	const mica = new Socio()
+	fixture {
+		tallerPoesia.agregarLibros(poemasNeruda)
+		poemasNeruda.paginas(600)
+		poemasNeruda.idioma("chino")
+		poemasNeruda.autor("neruda")
+		mica.setIdiomasQueHabla("ingles")
+		mica.setIdiomasQueHabla("espaniol")
+	}
+	
+	test "idiomas usados" {
+
+		assert.equals(["chino"],tallerPoesia.idiomasUsados())
+
+	}
+	test "implica esfuerzo"{
+		assert.that(tallerPoesia.implicaEsfuerzo())
+		
+	}
+	test "es recomendado" {
+		assert.that(tallerPoesia.esRecomendado(mica))
+	}
+	
+}

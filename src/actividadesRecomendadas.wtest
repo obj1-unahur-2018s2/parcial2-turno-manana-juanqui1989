@@ -1,0 +1,29 @@
+import Viajes.*
+import clasesDeGimnasia.*
+import socios.*
+describe "actividades recomendadas" {
+	const playaFantastica = new ViajeDePlaya()
+	const zumba = new ClaseDeGimnasia()
+	const roque = new SocioRelajado()
+	
+	fixture{
+		playaFantastica.largoPlaya(1000)
+		playaFantastica.setIdiomas("ingles")
+		playaFantastica.setIdiomas("frances")
+		
+		roque.maximoDeActividades(2)
+		
+		roque.setIdiomasQueHabla("ingles")
+		roque.edad(30)
+		
+	}
+	test "le recomendamos a roque la zumba?" {
+
+		assert.that(zumba.esRecomendado(roque))
+
+	}
+	test"le recomendamos a roque el viaje a la playa fantastica?"{
+		assert.that(playaFantastica.esRecomendado(roque))
+	}
+	
+}
